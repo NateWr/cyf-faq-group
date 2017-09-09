@@ -4,8 +4,6 @@ const fs = require('fs');
 const mongoConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/faq';
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
-
 const Entry = require('../models/Entry');
 
 /* GET home page. */
