@@ -7,12 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('group-project-faq:server');
 var http = require('http');
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
-const MongoClient = require('mongodb').MongoClient;
-
-
-
 
 
 /**
