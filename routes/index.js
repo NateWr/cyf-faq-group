@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const mongoConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/faq';
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+const Entry = require('../models/Entry');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,26 +13,22 @@ router.get('/', function(req, res, next) {
    * Define a callback function to render the
    * homepage once the entries have been loaded
    */
-  const renderEntries = function(error, file) {
-
+  const renderEntries = function(error, entries) {
     if (error) {
       throw error;
     }
-
-    const fileData = file.toString();
-    const entriesData = JSON.parse(fileData);
     res.render('index', {
       title: 'Frequenty Asked Questions',
       description: 'Search for an answer to your question below.',
-      entries: entriesData
+      entries: entries
     });
   };
 
   /**
    * Load the entries file
    */
-  const entriesFilePath = __dirname + '/../data/entries.json';
-  fs.readFile(entriesFilePath, renderEntries);
+  mongoose.connect(mongoConnection);
+    Entry.find({}, renderEntries);
 });
 
 module.exports = router;
