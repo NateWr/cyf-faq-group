@@ -4,6 +4,10 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
+const mongoConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/faq';
+const mongoose = require('mongoose');
+
 
 const index = require('./routes/index');
 
@@ -20,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', index);
 
