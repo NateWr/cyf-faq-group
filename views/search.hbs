@@ -1,0 +1,17 @@
+{{#if entries}}
+	<ul class="entry-list">
+		{{#each entries}}
+			<li class="entry">
+				<h2 class="entry__question">
+					{{this.question}}
+				</h2>
+				<div class="entry__answer">
+					{{{this.answer}}}
+				</div>
+				<div class="entry__help">
+					{{this.helpful}}/?? people found this helpful. Was this entry helpful?
+					<button class="button button--small">Yes</button>
+					<button class="button button--small">No</button>
+				</div>
+			</li>
+		{{/each}}
