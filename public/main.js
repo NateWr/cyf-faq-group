@@ -1,6 +1,6 @@
 const clickEvent = function (event) {
     const id = event.target.getAttribute('data-question-id');
-    const helpful = event.target.getAttribute('data-helpful');
+    const helpful = JSON.parse(event.target.getAttribute('data-helpful'));
 
     const options = {
         method: "POST",
@@ -22,7 +22,7 @@ const receiveResponse = function (res) {
         let valueElId = valueEl.getAttribute('data-question-id')
         if (res._id === valueElId) {
             let totalNumber = res.helpful + res.unhelpful;
-            valueEl.innerHTML = res.helpful + '/' + totalNumber + 'people found this helpful. was this entry helpful';
+            valueEl.innerHTML = res.helpful + '/' + totalNumber + ' people found this helpful. was this entry helpful';
         }
     }
 }
