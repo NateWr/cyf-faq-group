@@ -41,7 +41,6 @@ router.post('/rating', function(req, res, next) {
     }
     res.send(entry)
   };
-
   mongoose.connect(mongoConnection);
     Entry.findOneAndUpdate(
       {_id: id}, 
