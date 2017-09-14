@@ -31,4 +31,24 @@ router.get('/', function(req, res, next) {
     Entry.find({}, renderEntries);
 });
 
+//Raring Route -- Khaled
+router.post('/rating', function(req, res, next) {
+  const id = req.body.id;
+  const helpful = req.body.helpful  
+  const renderEntries = function(error, entry) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400)
+      return
+    }
+    res.send(entry)
+  };
+  mongoose.connect(mongoConnection);
+    Entry.findOneAndUpdate(
+      {_id: id}, 
+      {$inc: { [helpful ? 'helpful' : 'unhelpful' ]:  1}},
+      {new: true}
+    , renderEntries);
+});
+
 module.exports = router;
