@@ -1,11 +1,7 @@
-const mongoConnection = process.env.Mongo_URI || "mongodb://127.0.0.1:27017/faq";
-const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const Entry = require('../models/Entry');
-const express = require('express');
-const router = express.Router();
-
+const mongoConnection = process.env.MONGODB_URI ||'mongodb://localhost:27017/faq';
 
 const searchResult = (query, successCallback) => {
     mongoose.connect(mongoConnection);
@@ -14,7 +10,6 @@ const searchResult = (query, successCallback) => {
             $search: query,
         }
     }, successCallback);
-
 };
 
 module.exports = {

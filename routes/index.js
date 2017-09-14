@@ -1,20 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
-const mongoConnection = 'mongodb://127.0.0.1:27017/faq';
+const mongoConnection = process.env.MONGODB_URI ||'mongodb://localhost:27017/faq';
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const Entry = require('../models/Entry');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
- 
   /**
    * Define a callback function to render the
    * homepage once the entries have been loaded
    */
   const renderEntries = function (error, entries) {
-
     if (error) {
       throw error;
     }
@@ -24,13 +21,10 @@ router.get('/', function (req, res, next) {
       entries: entries
     });
   };
-
   /**
-   * Load the entries file
+   Reading from database
    */
-    
   mongoose.connect(mongoConnection);
-    
   Entry.find({}, renderEntries);
 });
 
