@@ -15,5 +15,3 @@ const searchResult = (query, successCallback) => {
 module.exports = {
     searchResult
 };
-
-
