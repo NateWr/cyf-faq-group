@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 const mongoConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/faq';
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
@@ -8,7 +7,6 @@ const Entry = require('../models/Entry');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
   /**
    * Define a callback function to render the
    * homepage once the entries have been loaded
@@ -25,7 +23,7 @@ router.get('/', function(req, res, next) {
   };
 
   /**
-   * Load the entries file
+   * Load the entries file from the database
    */
   mongoose.connect(mongoConnection);
     Entry.find({}, renderEntries);
@@ -43,6 +41,7 @@ router.post('/rating', function(req, res, next) {
     }
     res.send(entry)
   };
+
   mongoose.connect(mongoConnection);
     Entry.findOneAndUpdate(
       {_id: id}, 
