@@ -21,7 +21,7 @@ const receiveResponse = function (res) {
     for (let valueEl of valueEls) {
         let valueElId = valueEl.getAttribute('data-question-id')
         if (res._id === valueElId) {
-            let totalNumber = res.helpful + res.notHelpful;
+            let totalNumber = res.helpful + res.unhelpful;
             valueEl.innerHTML = res.helpful + '/' + totalNumber + 'people found this helpful. was this entry helpful';
         }
     }
