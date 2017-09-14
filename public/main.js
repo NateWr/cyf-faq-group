@@ -4,20 +4,17 @@ const clickEvent = function (event) {
 
     const options = {
         method: "POST",
-        body: {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
             id: id,
             helpful: helpful
-        }
+        })
     };
     fetch("/rating", options)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (json) {
-            console.log(json);
-            receiveResponse(json);
-        })
-    //  $ajax(options).done(receiveResponse);
+        .then(response => response.json())
+        .then(receiveResponse);
 }
 const receiveResponse = function (res) {
     const valueEls = document.querySelectorAll('.value-helpful');
