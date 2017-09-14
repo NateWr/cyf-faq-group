@@ -18,9 +18,9 @@
 			{{{this.answer}}}
 		</div>
 		<div class="entry__help">
-			<span id="displayCount">{{this.helpful}}</span>/<span id="totalNumber"></span> people found this helpful. Was this entry helpful?
-			<button id="Button1" class="button button--small">Yes</button>
-			<button id="Button2" class="button button--small">No</button>
+			<span class="value-helpful" data-question-id={ {this._id}}>{{this.helpful}} people found this helpful. Was this entry helpful?</span>
+			<button class="button button--small button-feedback" data-helpful="true" data-question-id="{{this._id}}">Yes</button>
+			<button class="button button--small button-feedback" data-helpful="false" data-question-id="{{this._id}}">No</button>
 		</div>
 	</li>
 	{{/each}}
