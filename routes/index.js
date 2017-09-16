@@ -15,10 +15,14 @@ router.get('/', function (req, res, next) {
     if (error) {
       throw error;
     }
+    const getTotal = entries.map((entry) => {
+      entry.total = entry.helpful + entry.unhelpful;
+      return entry;
+    })
     res.render('index', {
       title: 'Frequenty Asked Questions',
       description: 'Search for an answer to your question below.',
-      entries: entries
+      entries: getTotal
     });
   };
 
