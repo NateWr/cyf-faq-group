@@ -6,19 +6,23 @@ const { Schema } = mongoose;
 const Entry = require('../models/Entry');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   /**
    * Define a callback function to render the
    * homepage once the entries have been loaded
    */
-  const renderEntries = function(error, entries) {
+  const renderEntries = function (error, entries) {
     if (error) {
       throw error;
     }
+    const getTotal = entries.map((entry) => {
+      entry.total = entry.helpful + entry.unhelpful;
+      return entry;
+    })
     res.render('index', {
       title: 'Frequenty Asked Questions',
       description: 'Search for an answer to your question below.',
-      entries: entries
+      entries: getTotal
     });
   };
 
@@ -26,26 +30,26 @@ router.get('/', function(req, res, next) {
    * Load the entries file from the database
    */
   mongoose.connect(mongoConnection);
-    Entry.find({}, renderEntries);
+  Entry.find({}, renderEntries);
 });
 
 //Raring Route -- Khaled
-router.post('/rating', function(req, res, next) {
+router.post('/rating', function (req, res, next) {
   const id = req.body.id;
-  const helpful = req.body.helpful  
-  const renderEntries = function(error, entry) {
+  const helpful = req.body.helpful
+  const renderEntries = function (error, entry) {
     if (error) {
       console.log(error);
-      res.sendStatus(400)
+      res.sendStatus(500)
       return
     }
     res.send(entry)
   };
   mongoose.connect(mongoConnection);
-    Entry.findOneAndUpdate(
-      {_id: id}, 
-      {$inc: { [helpful ? 'helpful' : 'unhelpful' ]:  1}},
-      {new: true}
+  Entry.findOneAndUpdate(
+    { _id: id },
+    { $inc: { [helpful ? 'helpful' : 'unhelpful']: 1 } },
+    { new: true }
     , renderEntries);
 });
 
