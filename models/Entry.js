@@ -7,6 +7,7 @@ const schema = new Schema({
     helpful: Number,
     unhelpful: Number
 });
+schema.index({question: "text", answer: "text"});
 
 const Entry = mongoose.model('entries', schema);
 
