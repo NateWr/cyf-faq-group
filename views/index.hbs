@@ -1,8 +1,9 @@
-<form class="search" method="GET" action="/search">
+{{!-- {{> searchForm}} --}}
+<form class="search" method="POST" action="/search">
 	<label class="screen-reader" for="searchInput">
 		Search
 	</label>
-	<input class="search__input" type="search" name="searchInput" id="searchInput" placeholder="What's your question?">
+	<input class="search__input" type="search" name="searchInput" id="searchInput" placeholder="What's your question?" >
 	<button type="submit" class="button button--primary">
 		Search
 	</button>

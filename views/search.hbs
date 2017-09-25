@@ -1,3 +1,12 @@
+<form class="search" method="POST" action="/search">
+	<label class="screen-reader" for="searchInput">
+		Search
+	</label>
+	<input class="search__input" type="search" name="searchInput" id="searchInput" placeholder="What's your question?" value="{{searchInput}}">
+	<button type="submit" class="button button--primary">
+		Search
+	</button>
+</form>
 {{#if entries}}
 	<ul class="entry-list">
 		{{#each entries}}
@@ -17,3 +26,7 @@
 		{{/each}}
 	</ul>
 {{/if}}
+<div class="add">
+	<p class="add__prompt">Still haven't found your answer? Why not ask a question?</p>
+	<button class="button button--primary">Ask Question</button>
+</div>

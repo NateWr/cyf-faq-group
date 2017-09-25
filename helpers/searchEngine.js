@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const Entry = require('../models/Entry');
 const mongoConnection = process.env.MONGODB_URI ||'mongodb://localhost:27017/faq';
+//const mongoConnection = 'mongodb://127.0.0.1:27017/faq';
 
 const searchResult = (query, successCallback) => {
     mongoose.connect(mongoConnection);

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoConnection = process.env.MONGODB_URI ||'mongodb://localhost:27017/faq';
+//const mongoConnection = 'mongodb://127.0.0.1:27017/faq';
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const Entry = require('../models/Entry');
@@ -21,8 +22,8 @@ router.get('/', function (req, res, next) {
       entries: entries
     });
   };
-  /**
-   Reading from database
+  /*
+Reading from database
    */
   mongoose.connect(mongoConnection);
   Entry.find({}, renderEntries);
