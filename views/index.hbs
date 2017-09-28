@@ -17,10 +17,11 @@
 		<div class="entry__answer">
 			{{{this.answer}}}
 		</div>
-		<div class="entry__help">
+		<div class="entry__help question-{{this._id}}">
 			<span class="value-helpful" data-question-id={{this._id}}>{{this.helpful}}/{{this.total}} people found this helpful. Was this entry helpful?</span>
 			<button class="button button--small button-feedback" data-helpful="true" data-question-id="{{this._id}}">Yes</button>
 			<button class="button button--small button-feedback" data-helpful="false" data-question-id="{{this._id}}">No</button>
+			<div id="loading" class="hidden"></div>
 		</div>
 	</li>
 	{{/each}}
