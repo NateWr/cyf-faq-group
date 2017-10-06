@@ -43,7 +43,7 @@ const receiveResponse = function (res) {
         let valueElId = valueEl.getAttribute('data-question-id')
         if (res._id === valueElId) {
             let totalNumber = res.helpful + res.unhelpful;
-            valueEl.innerHTML = res.helpful + '/' + totalNumber + ' people found this helpful. was this entry helpful';
+            valueEl.innerHTML = res.helpful + '/' + totalNumber + ' people found this helpful. was this entry helpful?';
         }
     }
 }
