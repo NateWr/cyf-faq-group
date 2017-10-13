@@ -1,5 +1,5 @@
 const showHideLoader = function (id, showLoader) {
-    const loader = document.querySelector(`.question-${id} #loading`);
+    const loader = document.querySelector(`.question-${id} .loading`);
     const hideButtons = document.querySelectorAll(`.question-${id} .button-feedback`);
 
     if (showLoader === true) {
