@@ -8,23 +8,24 @@
 	</button>
 </form>
 {{#if entries}}
-	<ul class="entry-list">
-		{{#each entries}}
-			<li class="entry">
-				<h2 class="entry__question">
-					{{this.question}}
-				</h2>
-				<div class="entry__answer">
-					{{{this.answer}}}
-				</div>
-				<div class="entry__help">
-					{{this.helpful}}/?? people found this helpful. Was this entry helpful?
-					<button class="button button--small">Yes</button>
-					<button class="button button--small">No</button>
-				</div>
-			</li>
-		{{/each}}
-	</ul>
+<ul class="entry-list">
+	{{#each entries}}
+	<li class="entry">
+		<h2 class="entry__question">
+			{{this.question}}
+		</h2>
+		<div class="entry__answer">
+			{{{this.answer}}}
+		</div>
+		<div class="entry__help question-{{this._id}}">
+			<span class="value-helpful" data-question-id={{this._id}}>{{this.helpful}}/{{this.total}} people found this helpful. Was this entry helpful?</span>
+			<button class="button button--small button-feedback" data-helpful="true" data-question-id="{{this._id}}">Yes</button>
+			<button class="button button--small button-feedback" data-helpful="false" data-question-id="{{this._id}}">No</button>
+			<div class="loading hidden"></div>
+		</div>
+	</li>
+	{{/each}}
+</ul>
 {{/if}}
 <div class="add">
 	<p class="add__prompt">Still haven't found your answer? Why not ask a question?</p>
